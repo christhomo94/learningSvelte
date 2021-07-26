@@ -4,7 +4,7 @@
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>This is your first Svelte App! </p>
+	<p>This is your first Svelte App! Doesn't it look GREAT!  </p>
 </main>
 
 <style>
