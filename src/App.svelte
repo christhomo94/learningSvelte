@@ -1,10 +1,22 @@
 <script>
-	let name = "Chris";
+	let name = 'Chris'; 
+	let belt = 'Black';
+
+	const handleClick = () => {
+		belt = 'White';
+	}
+
+	const handleInput = (e) => {
+		belt = e.target.value
+	}
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>This is your first Svelte App! Doesn't it look GREAT!  </p>
+	<p style="color: {belt}">This is your first Svelte App! Doesn't it look GREAT? Also, I can't believe you are a {belt} belt! </p>
+	<!-- <input type="text" on:input={handleInput} value = {belt}> -->
+	<input type="text" bind:value = {belt}>
+	<button on:click = {handleClick}>Update belt color</button>
 </main>
 
 <style>
