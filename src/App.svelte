@@ -1,22 +1,32 @@
 <script>
-	let name = 'Chris'; 
-	let belt = 'Black';
+	import Modal from './Modal.svelte';
 
-	const handleClick = () => {
-		belt = 'White';
+	let people = [
+		{name: 'Yoshi', beltColor: 'black', age: 25, id: 1},
+		{name: 'Mario', beltColor: 'orange', age: 45, id: 2},
+		{name: 'Loshi', beltColor: 'black', age: 35, id: 3}	
+	];
+	const deletePerson = (id) => {
+		people = people.filter((person) => person.id != id);
+
 	}
 
-	const handleInput = (e) => {
-		belt = e.target.value
-	}
+	let num = 5;	
 </script>
-
+<Modal />
 <main>
-	<h1>Hello {name}!</h1>
-	<p style="color: {belt}">This is your first Svelte App! Doesn't it look GREAT? Also, I can't believe you are a {belt} belt! </p>
-	<!-- <input type="text" on:input={handleInput} value = {belt}> -->
-	<input type="text" bind:value = {belt}>
-	<button on:click = {handleClick}>Update belt color</button>
+	{#each people as person (person.id)}
+		<div>
+			<h4>{person.name}</h4>
+			{#if person.beltColor === 'black'}
+				<p><strong>Master Ninja</strong></p>
+			{/if}
+			<p>{person.age} years old, {person.beltColor} belt. </p>
+			<button on:click={() => {deletePerson(person.id)}}>Delete Person</button>
+		</div>
+	{:else}
+		<p>There are no people to show...</p>
+	{/each}
 </main>
 
 <style>
@@ -26,18 +36,6 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 800;
-	}
-
-	p {
-		font-size: 1.5em;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 
 	@media (min-width: 640px) {
