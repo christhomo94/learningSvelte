@@ -1,12 +1,13 @@
 <script>
-    let showModal = true;
-    let isPromo = true;
+    export let showModal = false;
+    export let isPromo = false;
+
 </script>
 
 {#if showModal}
-    <div class="backdrop" class:promo={isPromo}> 
+    <div class="backdrop" class:promo={isPromo} on:click|self> 
         <div class="modal">
-            <p>Sign up for offers</p>
+            <slot></slot>
         </div>
     </div>
 {/if}
